@@ -624,6 +624,7 @@ func (api *KrakenAPI) doRequest(reqURL string, values url.Values, headers map[st
 
 	// Parse request
 	var jsonData KrakenResponse
+	fmt.Println(jsonData)
 
 	// Set the KrakenResponse.Result to typ so `json.Unmarshal` will
 	// unmarshal it into given type, instead of `interface{}`.
