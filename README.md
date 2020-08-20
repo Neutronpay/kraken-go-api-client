@@ -35,6 +35,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(ticker["XXBTZEUR"].OpeningPrice)
+	fmt.Println((*ticker)["XXBTZEUR"].OpeningPrice)
 }
 ```
