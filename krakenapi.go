@@ -283,8 +283,16 @@ func (api *KrakenAPI) Balance() (*BalanceResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	return resp.(*BalanceResponse), nil
+	t := resp.(*map[string]string)
+	br := make(BalanceResponse)
+	for k, v := range *t {
+		if fv, err := strconv.ParseFloat(v, 64); err == nil {
+			br[k] = fv
+		} else {
+			return &br, err
+		}
+	}
+	return &br, nil
 }
 
 // TradeBalance returns trade balance info

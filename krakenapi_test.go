@@ -60,24 +60,24 @@ func TestAssetPairs(t *testing.T) {
 		t.Errorf("AssetPairs() should not return an error, got %s", err)
 	}
 
-	if resp.XXBTZEUR.Base+resp.XXBTZEUR.Quote != XXBTZEUR {
-		t.Errorf("AssetPairs() should return valid response, got %+v", resp.XXBTZEUR)
+	if (*resp)["XXBTZEUR"].Base+(*resp)["XXBTZEUR"].Quote != "XXBTZEUR" {
+		t.Errorf("AssetPairs() should return valid response, got %+v", (*resp)["XXBTZEU"])
 	}
 }
 
 func TestTicker(t *testing.T) {
-	resp, err := publicAPI.Ticker(XXBTZEUR, XXRPZEUR)
+	resp, err := publicAPI.Ticker("XXBTZEUR", "XXRPZEUR")
 	if err != nil {
 		t.Errorf("Ticker() should not return an error, got %s", err)
 	}
 
-	if resp.XXBTZEUR.OpeningPrice == 0 {
-		t.Errorf("Ticker() should return valid OpeningPrice, got %+v", resp.XXBTZEUR.OpeningPrice)
+	if (*resp)["XXBTZEUR"].OpeningPrice == 0 {
+		t.Errorf("Ticker() should return valid OpeningPrice, got %+v", (*resp)["XXBTZEUR"].OpeningPrice)
 	}
 }
 
 func TestOHLC(t *testing.T) {
-	resp, err := publicAPI.OHLC(XXBTZEUR)
+	resp, err := publicAPI.OHLC("XXBTZEUR")
 	if err != nil {
 		t.Errorf("OHLC() should not return an error, got %s", err)
 	}
@@ -115,7 +115,7 @@ func TestQueryTicker(t *testing.T) {
 }
 
 func TestQueryTrades(t *testing.T) {
-	result, err := publicAPI.Trades(XXBTZEUR, 1495777604391411290)
+	result, err := publicAPI.Trades("XXBTZEUR", 1495777604391411290)
 
 	if err != nil {
 		t.Errorf("Trades should not return an error, got %s", err)

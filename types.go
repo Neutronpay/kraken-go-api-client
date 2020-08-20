@@ -9,81 +9,6 @@ import (
 	"time"
 )
 
-// trade pairs constants
-const (
-	ADACAD   = "ADACAD"
-	ADAETH   = "ADAETH"
-	ADAEUR   = "ADAEUR"
-	ADAUSD   = "ADAUSD"
-	ADAXBT   = "ADAXBT"
-	BCHEUR   = "BCHEUR"
-	BCHUSD   = "BCHUSD"
-	BCHXBT   = "BCHXBT"
-	DASHEUR  = "DASHEUR"
-	DASHUSD  = "DASHUSD"
-	DASHXBT  = "DASHXBT"
-	EOSETH   = "EOSETH"
-	EOSEUR   = "EOSEUR"
-	EOSUSD   = "EOSUSD"
-	EOSXBT   = "EOSXBT"
-	GNOETH   = "GNOETH"
-	GNOEUR   = "GNOEUR"
-	GNOUSD   = "GNOUSD"
-	GNOXBT   = "GNOXBT"
-	QTUMCAD  = "QTUMCAD"
-	QTUMETH  = "QTUMETH"
-	QTUMEUR  = "QTUMEUR"
-	QTUMUSD  = "QTUMUSD"
-	QTUMXBT  = "QTUMXBT"
-	USDTZUSD = "USDTZUSD"
-	XETCXETH = "XETCXETH"
-	XETCXXBT = "XETCXXBT"
-	XETCZEUR = "XETCZEUR"
-	XETCZUSD = "XETCZUSD"
-	XETHXXBT = "XETHXXBT"
-	XETHZCAD = "XETHZCAD"
-	XETHZEUR = "XETHZEUR"
-	XETHZGBP = "XETHZGBP"
-	XETHZJPY = "XETHZJPY"
-	XETHZUSD = "XETHZUSD"
-	XICNXETH = "XICNXETH"
-	XICNXXBT = "XICNXXBT"
-	XLTCXXBT = "XLTCXXBT"
-	XLTCZEUR = "XLTCZEUR"
-	XLTCZUSD = "XLTCZUSD"
-	XMLNXETH = "XMLNXETH"
-	XMLNXXBT = "XMLNXXBT"
-	XREPXETH = "XREPXETH"
-	XREPXXBT = "XREPXXBT"
-	XREPZEUR = "XREPZEUR"
-	XREPZUSD = "XREPZUSD"
-	XTZCAD   = "XTZCAD"
-	XTZETH   = "XTZETH"
-	XTZEUR   = "XTZEUR"
-	XTZUSD   = "XTZUSD"
-	XTZXBT   = "XTZXBT"
-	XXBTZCAD = "XXBTZCAD"
-	XXBTZEUR = "XXBTZEUR"
-	XXBTZGBP = "XXBTZGBP"
-	XXBTZJPY = "XXBTZJPY"
-	XXBTZUSD = "XXBTZUSD"
-	XXDGXXBT = "XXDGXXBT"
-	XXLMXXBT = "XXLMXXBT"
-	XXLMZEUR = "XXLMZEUR"
-	XXLMZUSD = "XXLMZUSD"
-	XXMRXXBT = "XXMRXXBT"
-	XXMRZEUR = "XXMRZEUR"
-	XXMRZUSD = "XXMRZUSD"
-	XXRPXXBT = "XXRPXXBT"
-	XXRPZCAD = "XXRPZCAD"
-	XXRPZEUR = "XXRPZEUR"
-	XXRPZJPY = "XXRPZJPY"
-	XXRPZUSD = "XXRPZUSD"
-	XZECXXBT = "XZECXXBT"
-	XZECZEUR = "XZECZEUR"
-	XZECZUSD = "XZECZUSD"
-)
-
 // actions constants
 const (
 	BUY    = "b"
@@ -107,79 +32,7 @@ type TimeResponse struct {
 }
 
 // AssetPairsResponse includes asset pair informations
-type AssetPairsResponse struct {
-	ADACAD   AssetPairInfo
-	ADAETH   AssetPairInfo
-	ADAEUR   AssetPairInfo
-	ADAUSD   AssetPairInfo
-	ADAXBT   AssetPairInfo
-	BCHEUR   AssetPairInfo
-	BCHUSD   AssetPairInfo
-	BCHXBT   AssetPairInfo
-	DASHEUR  AssetPairInfo
-	DASHUSD  AssetPairInfo
-	DASHXBT  AssetPairInfo
-	EOSETH   AssetPairInfo
-	EOSEUR   AssetPairInfo
-	EOSUSD   AssetPairInfo
-	EOSXBT   AssetPairInfo
-	GNOETH   AssetPairInfo
-	GNOEUR   AssetPairInfo
-	GNOUSD   AssetPairInfo
-	GNOXBT   AssetPairInfo
-	QTUMCAD  AssetPairInfo
-	QTUMETH  AssetPairInfo
-	QTUMEUR  AssetPairInfo
-	QTUMUSD  AssetPairInfo
-	QTUMXBT  AssetPairInfo
-	USDTZUSD AssetPairInfo
-	XETCXETH AssetPairInfo
-	XETCXXBT AssetPairInfo
-	XETCZEUR AssetPairInfo
-	XETCZUSD AssetPairInfo
-	XETHXXBT AssetPairInfo
-	XETHZCAD AssetPairInfo
-	XETHZEUR AssetPairInfo
-	XETHZGBP AssetPairInfo
-	XETHZJPY AssetPairInfo
-	XETHZUSD AssetPairInfo
-	XICNXETH AssetPairInfo
-	XICNXXBT AssetPairInfo
-	XLTCXXBT AssetPairInfo
-	XLTCZEUR AssetPairInfo
-	XLTCZUSD AssetPairInfo
-	XMLNXETH AssetPairInfo
-	XMLNXXBT AssetPairInfo
-	XREPXETH AssetPairInfo
-	XREPXXBT AssetPairInfo
-	XREPZEUR AssetPairInfo
-	XREPZUSD AssetPairInfo
-	XTZCAD   AssetPairInfo
-	XTZETH   AssetPairInfo
-	XTZEUR   AssetPairInfo
-	XTZUSD   AssetPairInfo
-	XTZXBT   AssetPairInfo
-	XXBTZCAD AssetPairInfo
-	XXBTZEUR AssetPairInfo
-	XXBTZGBP AssetPairInfo
-	XXBTZJPY AssetPairInfo
-	XXBTZUSD AssetPairInfo
-	XXDGXXBT AssetPairInfo
-	XXLMXXBT AssetPairInfo
-	XXLMZEUR AssetPairInfo
-	XXLMZUSD AssetPairInfo
-	XXMRXXBT AssetPairInfo
-	XXMRZEUR AssetPairInfo
-	XXMRZUSD AssetPairInfo
-	XXRPXXBT AssetPairInfo
-	XXRPZCAD AssetPairInfo
-	XXRPZEUR AssetPairInfo
-	XXRPZJPY AssetPairInfo
-	XXRPZUSD AssetPairInfo
-	XZECXXBT AssetPairInfo
-	XZECZEUR AssetPairInfo
-	XZECZUSD AssetPairInfo
-}
+type AssetPairsResponse map[string]AssetPairInfo
 
 // AssetPairInfo represents asset pair information
 type AssetPairInfo struct {
@@ -218,38 +71,7 @@ type AssetPairInfo struct {
 }
 
 // AssetsResponse includes asset informations
-type AssetsResponse struct {
-	ADA  AssetInfo
-	BCH  AssetInfo
-	DASH AssetInfo
-	EOS  AssetInfo
-	GNO  AssetInfo
-	KFEE AssetInfo
-	QTUM AssetInfo
-	USDT AssetInfo
-	XDAO AssetInfo
-	XETC AssetInfo
-	XETH AssetInfo
-	XICN AssetInfo
-	XLTC AssetInfo
-	XMLN AssetInfo
-	XNMC AssetInfo
-	XREP AssetInfo
-	XXBT AssetInfo
-	XXDG AssetInfo
-	XXLM AssetInfo
-	XXMR AssetInfo
-	XXRP AssetInfo
-	XTZ  AssetInfo
-	XXVN AssetInfo
-	XZEC AssetInfo
-	ZCAD AssetInfo
-	ZEUR AssetInfo
-	ZGBP AssetInfo
-	ZJPY AssetInfo
-	ZKRW AssetInfo
-	ZUSD AssetInfo
-}
+type AssetsResponse map[string]AssetInfo
 
 // AssetInfo represents an asset information
 type AssetInfo struct {
@@ -264,47 +86,7 @@ type AssetInfo struct {
 }
 
 // BalanceResponse represents the account's balances (list of currencies)
-type BalanceResponse struct {
-	ADA   float64 `json:",string"`
-	ALGO  float64 `json:",string"`
-	ATOM  float64 `json:",string"`
-	BAT   float64 `json:",string"`
-	BCH   float64 `json:",string"`
-	COMP  float64 `json:",string"`
-	DAI   float64 `json:",string"`
-	DASH  float64 `json:",string"`
-	EOS   float64 `json:",string"`
-	ETC   float64 `json:",string"`
-	ETH   float64 `json:",string"`
-	GNO   float64 `json:",string"`
-	GOOMG float64 `json:",string"`
-	ICX   float64 `json:",string"`
-	KAVA  float64 `json:",string"`
-	KNC   float64 `json:",string"`
-	LINK  float64 `json:",string"`
-	LSK   float64 `json:",string"`
-	LTC   float64 `json:",string"`
-	MLN   float64 `json:",string"`
-	NANO  float64 `json:",string"`
-	OXT   float64 `json:",string"`
-	PAXG  float64 `json:",string"`
-	QTUM  float64 `json:",string"`
-	REP   float64 `json:",string"`
-	REPV2 float64 `json:",string"`
-	SC    float64 `json:",string"`
-	STORJ float64 `json:",string"`
-	TRX   float64 `json:",string"`
-	USDC  float64 `json:",string"`
-	USDT  float64 `json:",string"`
-	WAVES float64 `json:",string"`
-	XBT   float64 `json:",string"`
-	XDG   float64 `json:",string"`
-	XLM   float64 `json:",string"`
-	XMR   float64 `json:",string"`
-	XRP   float64 `json:",string"`
-	XTZ   float64 `json:",string"`
-	ZEC   float64 `json:",string"`
-}
+type BalanceResponse map[string]float64
 
 // TradeBalanceResponse struct used as the response for the TradeBalance method
 type TradeBalanceResponse struct {
@@ -320,79 +102,7 @@ type TradeBalanceResponse struct {
 }
 
 // Fees includes fees information for different currencies
-type Fees struct {
-	ADACAD   FeeInfo
-	ADAETH   FeeInfo
-	ADAEUR   FeeInfo
-	ADAUSD   FeeInfo
-	ADAXBT   FeeInfo
-	BCHEUR   FeeInfo
-	BCHUSD   FeeInfo
-	BCHXBT   FeeInfo
-	DASHEUR  FeeInfo
-	DASHUSD  FeeInfo
-	DASHXBT  FeeInfo
-	EOSETH   FeeInfo
-	EOSEUR   FeeInfo
-	EOSUSD   FeeInfo
-	EOSXBT   FeeInfo
-	GNOETH   FeeInfo
-	GNOEUR   FeeInfo
-	GNOUSD   FeeInfo
-	GNOXBT   FeeInfo
-	QTUMCAD  FeeInfo
-	QTUMETH  FeeInfo
-	QTUMEUR  FeeInfo
-	QTUMUSD  FeeInfo
-	QTUMXBT  FeeInfo
-	USDTZUSD FeeInfo
-	XETCXETH FeeInfo
-	XETCXXBT FeeInfo
-	XETCZEUR FeeInfo
-	XETCZUSD FeeInfo
-	XETHXXBT FeeInfo
-	XETHZCAD FeeInfo
-	XETHZEUR FeeInfo
-	XETHZGBP FeeInfo
-	XETHZJPY FeeInfo
-	XETHZUSD FeeInfo
-	XICNXETH FeeInfo
-	XICNXXBT FeeInfo
-	XLTCXXBT FeeInfo
-	XLTCZEUR FeeInfo
-	XLTCZUSD FeeInfo
-	XMLNXETH FeeInfo
-	XMLNXXBT FeeInfo
-	XREPXETH FeeInfo
-	XREPXXBT FeeInfo
-	XREPZEUR FeeInfo
-	XREPZUSD FeeInfo
-	XTZCAD   FeeInfo
-	XTZETH   FeeInfo
-	XTZEUR   FeeInfo
-	XTZUSD   FeeInfo
-	XTZXBT   FeeInfo
-	XXBTZCAD FeeInfo
-	XXBTZEUR FeeInfo
-	XXBTZGBP FeeInfo
-	XXBTZJPY FeeInfo
-	XXBTZUSD FeeInfo
-	XXDGXXBT FeeInfo
-	XXLMXXBT FeeInfo
-	XXLMZEUR FeeInfo
-	XXLMZUSD FeeInfo
-	XXMRXXBT FeeInfo
-	XXMRZEUR FeeInfo
-	XXMRZUSD FeeInfo
-	XXRPXXBT FeeInfo
-	XXRPZCAD FeeInfo
-	XXRPZEUR FeeInfo
-	XXRPZJPY FeeInfo
-	XXRPZUSD FeeInfo
-	XZECXXBT FeeInfo
-	XZECZEUR FeeInfo
-	XZECZUSD FeeInfo
-}
+type Fees map[string]FeeInfo
 
 // FeeInfo represents a fee information
 type FeeInfo struct {
@@ -413,79 +123,7 @@ type TradeVolumeResponse struct {
 }
 
 // TickerResponse includes the requested ticker pairs
-type TickerResponse struct {
-	ADACAD   PairTickerInfo
-	ADAETH   PairTickerInfo
-	ADAEUR   PairTickerInfo
-	ADAUSD   PairTickerInfo
-	ADAXBT   PairTickerInfo
-	BCHEUR   PairTickerInfo
-	BCHUSD   PairTickerInfo
-	BCHXBT   PairTickerInfo
-	DASHEUR  PairTickerInfo
-	DASHUSD  PairTickerInfo
-	DASHXBT  PairTickerInfo
-	EOSETH   PairTickerInfo
-	EOSEUR   PairTickerInfo
-	EOSUSD   PairTickerInfo
-	EOSXBT   PairTickerInfo
-	GNOETH   PairTickerInfo
-	GNOEUR   PairTickerInfo
-	GNOUSD   PairTickerInfo
-	GNOXBT   PairTickerInfo
-	QTUMCAD  PairTickerInfo
-	QTUMETH  PairTickerInfo
-	QTUMEUR  PairTickerInfo
-	QTUMUSD  PairTickerInfo
-	QTUMXBT  PairTickerInfo
-	USDTZUSD PairTickerInfo
-	XETCXETH PairTickerInfo
-	XETCXXBT PairTickerInfo
-	XETCZEUR PairTickerInfo
-	XETCZUSD PairTickerInfo
-	XETHXXBT PairTickerInfo
-	XETHZCAD PairTickerInfo
-	XETHZEUR PairTickerInfo
-	XETHZGBP PairTickerInfo
-	XETHZJPY PairTickerInfo
-	XETHZUSD PairTickerInfo
-	XICNXETH PairTickerInfo
-	XICNXXBT PairTickerInfo
-	XLTCXXBT PairTickerInfo
-	XLTCZEUR PairTickerInfo
-	XLTCZUSD PairTickerInfo
-	XMLNXETH PairTickerInfo
-	XMLNXXBT PairTickerInfo
-	XREPXETH PairTickerInfo
-	XREPXXBT PairTickerInfo
-	XREPZEUR PairTickerInfo
-	XREPZUSD PairTickerInfo
-	XXBTZCAD PairTickerInfo
-	XXBTZEUR PairTickerInfo
-	XXBTZGBP PairTickerInfo
-	XXBTZJPY PairTickerInfo
-	XXBTZUSD PairTickerInfo
-	XXDGXXBT PairTickerInfo
-	XXLMXXBT PairTickerInfo
-	XXLMZEUR PairTickerInfo
-	XXLMZUSD PairTickerInfo
-	XXMRXXBT PairTickerInfo
-	XXMRZEUR PairTickerInfo
-	XXMRZUSD PairTickerInfo
-	XXRPXXBT PairTickerInfo
-	XXRPZCAD PairTickerInfo
-	XXRPZEUR PairTickerInfo
-	XXRPZJPY PairTickerInfo
-	XXRPZUSD PairTickerInfo
-	XTZCAD   PairTickerInfo
-	XTZETH   PairTickerInfo
-	XTZEUR   PairTickerInfo
-	XTZUSD   PairTickerInfo
-	XTZXBT   PairTickerInfo
-	XZECXXBT PairTickerInfo
-	XZECZEUR PairTickerInfo
-	XZECZUSD PairTickerInfo
-}
+type TickerResponse map[string]PairTickerInfo
 
 // DepositAddressesResponse is the response type of a DepositAddresses query to the Kraken API.
 type DepositAddressesResponse []struct {

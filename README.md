@@ -1,9 +1,9 @@
 Kraken GO API Client
 ====================
 
-[![build status](https://img.shields.io/travis/beldur/kraken-go-api-client/master.svg)](https://travis-ci.org/beldur/kraken-go-api-client)
-
 A simple API Client for the [Kraken](https://www.kraken.com/ "Kraken") Trading platform.
+
+This is a fork of [kraken-go-api-client](https://github.com/beldur/kraken-go-api-client/) which uses strings instead of typed symbol constants.
 
 Example usage:
 
@@ -30,19 +30,11 @@ func main() {
 	fmt.Printf("Result: %+v\n", result)
 
 	// There are also some strongly typed methods available
-	ticker, err := api.Ticker(krakenapi.XXBTZEUR)
+	ticker, err := api.Ticker("XXBTZEUR")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(ticker.XXBTZEUR.OpeningPrice)
+	fmt.Println(ticker["XXBTZEUR"].OpeningPrice)
 }
 ```
-
-## Contributors
- - Piega
- - Glavic
- - MarinX
- - bjorand
- - [khezen](https://github.com/khezen)
- 
