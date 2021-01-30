@@ -19,22 +19,11 @@ import (
 
 func main() {
 	api := krakenapi.New("KEY", "SECRET")
-	result, err := api.Query("Ticker", map[string]string{
-		"pair": "XXBTZEUR",
-	})
 
+	ticker, err := api.Ticker("STORJUSD")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("Result: %+v\n", result)
-
-	// There are also some strongly typed methods available
-	ticker, err := api.Ticker("XXBTZEUR")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println((*ticker)["XXBTZEUR"].OpeningPrice)
+	fmt.Printf("Bid price: %s\n", (*ticker)["STORJUSD"].Bid[0])
 }
 ```
