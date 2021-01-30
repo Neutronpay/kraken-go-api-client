@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -17,7 +19,12 @@ func main() {
 
 func onReady() {
 	// read credentials file and connect
-	credentials, err := ioutil.ReadFile("credentials.txt")
+	home, err := os.UserHomeDir()
+	if err != nil {
+		systray.SetTitle("ERR")
+		systray.SetTooltip(err.Error())
+	}
+	credentials, err := ioutil.ReadFile(filepath.Join(home, ".krakenCreds"))
 	if err != nil {
 		systray.SetTitle("ERR")
 		systray.SetTooltip(err.Error())

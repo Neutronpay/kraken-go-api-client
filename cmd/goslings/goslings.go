@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
+	"path/filepath"
 	"strings"
 
 	krakenapi "github.com/wthorp/kraken-go-api-client"
@@ -17,7 +19,11 @@ func check(err error) {
 
 func main() {
 	// read credentials file and connect
-	credentials, err := ioutil.ReadFile("credentials.txt")
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal("Error determining home path")
+	}
+	credentials, err := ioutil.ReadFile(filepath.Join(home, ".krakenCreds"))
 	if err != nil {
 		log.Fatalf("Error reading credentials file %s\n", err)
 	}
