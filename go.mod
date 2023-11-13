@@ -1,4 +1,4 @@
-module github.com/wthorp/kraken-go-api-client
+module github.com/Neutronpay/kraken-go-api-client
 
 go 1.14
 
