@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	krakenapi "github.com/wthorp/kraken-go-api-client"
+	krakenapi "github.com/Neutronpay/kraken-go-api-client"
 )
 
 func check(err error) {
