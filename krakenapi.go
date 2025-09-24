@@ -511,6 +511,23 @@ func (api *KrakenAPI) Ledgers(args map[string]string) (*LedgersResponse, error) 
 	return resp.(*LedgersResponse), nil
 }
 
+// DepositMethods returns available deposit methods for a specific asset (Custody API)
+func (api *KrakenAPI) DepositMethods(params DepositMethodsParams) (*DepositMethodsResponse, error) {
+	values := url.Values{}
+	if params.Asset != "" {
+		values.Add("asset", params.Asset)
+	}
+	if params.Aclass != "" {
+		values.Add("aclass", params.Aclass)
+	}
+
+	resp, err := api.queryPrivate("DepositMethods", values, &DepositMethodsResponse{})
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*DepositMethodsResponse), nil
+}
+
 // DepositAddresses returns deposit addresses
 func (api *KrakenAPI) DepositAddresses(asset string, method string) (*DepositAddressesResponse, error) {
 	resp, err := api.queryPrivate("DepositAddresses", url.Values{
@@ -521,6 +538,35 @@ func (api *KrakenAPI) DepositAddresses(asset string, method string) (*DepositAdd
 		return nil, err
 	}
 	return resp.(*DepositAddressesResponse), nil
+}
+
+// DepositStatus returns information about recent deposits using a typed struct
+func (api *KrakenAPI) DepositStatus(params DepositStatusParams) (*DepositStatusResponse, error) {
+	values := url.Values{}
+	if params.Asset != "" {
+		values.Add("asset", params.Asset)
+	}
+	if params.Method != "" {
+		values.Add("method", params.Method)
+	}
+	if params.Start != "" {
+		values.Add("start", params.Start)
+	}
+	if params.End != "" {
+		values.Add("end", params.End)
+	}
+	if params.Cursor != "" {
+		values.Add("cursor", params.Cursor)
+	}
+	if params.Limit != "" {
+		values.Add("limit", params.Limit)
+	}
+
+	resp, err := api.queryPrivate("DepositStatus", values, &DepositStatusResponse{})
+	if err != nil {
+		return nil, err
+	}
+	return resp.(*DepositStatusResponse), nil
 }
 
 // Withdraw executes a withdrawal, returning a reference ID

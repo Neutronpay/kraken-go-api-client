@@ -145,6 +145,77 @@ type WithdrawInfoResponse struct {
 	Fee    big.Float `json:"fee"`
 }
 
+// DepositStatusResponse is the response type of a DepositStatus query to the Kraken API.
+type DepositStatusResponse []DepositInfo
+
+// DepositInfo represents a single deposit transaction
+type DepositInfo struct {
+	Method string  `json:"method"`
+	Aclass string  `json:"aclass"`
+	Asset  string  `json:"asset"`
+	RefID  string  `json:"refid"`
+	TxID   string  `json:"txid"`
+	Info   string  `json:"info"`
+	Amount float64 `json:"amount,string"`
+	Fee    float64 `json:"fee,string"`
+	Time   int64   `json:"time"`
+	Status string  `json:"status"`
+}
+
+// DepositStatusParams represents optional parameters for DepositStatus request
+type DepositStatusParams struct {
+	Asset  string `json:"asset,omitempty"`  // Filter by asset
+	Method string `json:"method,omitempty"` // Filter by method
+	Start  string `json:"start,omitempty"`  // Start timestamp
+	End    string `json:"end,omitempty"`    // End timestamp
+	Cursor string `json:"cursor,omitempty"` // Result cursor for pagination
+	Limit  string `json:"limit,omitempty"`  // Number of results to retrieve
+}
+
+// SetLimit sets the limit with integer for convenience
+func (p *DepositStatusParams) SetLimit(limit int) *DepositStatusParams {
+	p.Limit = strconv.Itoa(limit)
+	return p
+}
+
+// SetTimeRange sets start and end timestamps from Unix timestamps
+func (p *DepositStatusParams) SetTimeRange(start, end int64) *DepositStatusParams {
+	p.Start = strconv.FormatInt(start, 10)
+	p.End = strconv.FormatInt(end, 10)
+	return p
+}
+
+// SetStartTime sets only the start timestamp (get deposits since this time)
+func (p *DepositStatusParams) SetStartTime(start int64) *DepositStatusParams {
+	p.Start = strconv.FormatInt(start, 10)
+	return p
+}
+
+// SetEndTime sets only the end timestamp (get deposits before this time)
+func (p *DepositStatusParams) SetEndTime(end int64) *DepositStatusParams {
+	p.End = strconv.FormatInt(end, 10)
+	return p
+}
+
+// DepositMethodsParams represents parameters for DepositMethods custody API request
+type DepositMethodsParams struct {
+	Asset  string `json:"asset,omitempty"`  // Asset to get deposit methods for
+	Aclass string `json:"aclass,omitempty"` // Asset class (currency, crypto)
+}
+
+// DepositMethodsResponse is the response type of a DepositMethods query to the Kraken Custody API
+type DepositMethodsResponse []DepositMethodInfo
+
+// DepositMethodInfo represents a single deposit method available for an asset
+type DepositMethodInfo struct {
+	Method     string `json:"method"`     // Deposit method name
+	Minimum    string `json:"minimum"`    // Minimum deposit amount
+	Maximum    string `json:"maximum"`    // Maximum deposit amount
+	Fee        string `json:"fee"`        // Fee for this deposit method
+	Address    string `json:"address"`    // Address or account info
+	Additional string `json:"additional"` // Additional information/requirements
+}
+
 // GetPairTickerInfo is a helper method that returns given `pair`'s `PairTickerInfo`
 func (v *TickerResponse) GetPairTickerInfo(pair string) PairTickerInfo {
 	r := reflect.ValueOf(v)

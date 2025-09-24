@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
+	krakenapi "github.com/Neutronpay/kraken-go-api-client"
 	"github.com/getlantern/systray"
-	krakenapi "github.com/wthorp/kraken-go-api-client"
 )
 
 func main() {
